@@ -7,7 +7,7 @@
   "author": "yikoyu<2282373181@qq.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yikoyu/eslint-config"
+    "url": "https://github.com/yikoyu/eslint-config-prettier"
   },
   "keywords": [
     "eslint",
@@ -38,7 +38,7 @@
     "lint": "eslint **/*.{js,ts}",
     "lint:fix": "eslint **/*.{js,ts} --fix",
     "git-commit": "git-cz",
-    "push": "pnpm publish --no-git-checks --registry https://registry.npmjs.org/",
+    "push": "pnpm publish --no-git-checks --registry https://registry.npmjs.org/ --access public",
     "prepare": "husky install"
   },
   "config": {
