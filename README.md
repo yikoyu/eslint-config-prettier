@@ -17,11 +17,11 @@ This package provides [Prettier](https://prettier.io) and [ESLint](https://eslin
 Install the package with:
 
 ```shell
-pnpm add @yikoyu/eslint-config-prettier -D
+pnpm add eslint stylelint @yikoyu/eslint-config-prettier -D
 # or
-yarn add @yikoyu/eslint-config-prettier -D
+yarn add eslint stylelint @yikoyu/eslint-config-prettier -D
 # or
-npm i @yikoyu/eslint-config-prettier -D
+npm i eslint stylelint @yikoyu/eslint-config-prettier -D
 ```
 
 Find out and install `peerDependencies`.
@@ -36,10 +36,12 @@ pnpm info "@yikoyu/eslint-config-prettier@latest" peerDependencies
 - @yikoyu/eslint-config-prettier/typescript
 - @yikoyu/eslint-config-prettier/vue2
 - @yikoyu/eslint-config-prettier/vue3
+- @yikoyu/eslint-config-prettier/prettier.config
+- @yikoyu/eslint-config-prettier/stylelint.config
 
 ## Usage
 
-If you did not already have `.eslint.js` and `prettier.config.js` configuration files in the root of your project create them.
+If you did not already have `.eslint.js` `prettier.config.js` and `stylelint.config.js` configuration files in the root of your project create them.
 
 Add the following to your `.eslint.js`:
 
@@ -66,13 +68,82 @@ Add the following to your `prettier.config.js`:
 module.exports = require('@yikoyu/eslint-config-prettier/prettier.config');
 ```
 
+Add the following to your `stylelint.config.js`:
+```js
+// stylelint.config.js
+module.exports = require('@yikoyu/eslint-config-prettier/stylelint.config');
+```
+
+
 ### NPM script
 
 Add the following script to your `package.json` for easy usage:
 
 ```json
 "scripts": {
-  "format": "prettier --write './**/*.{js,ts,vue,md,json}'"
+  "lint:css": "stylelint **/*.{css,less,scss,vue}",
+  "lint:js": "eslint **/*.{js,ts,tsx,vue}",
+  "lint:all": "eslint **/*.{js,ts,tsx,vue} & stylelint **/*.{css,less,scss,vue}",
+  "lint:fix": "eslint **/*.{js,ts,tsx,vue} --fix & stylelint **/*.{css,less,scss,vue} --fix",
+}
+```
+
+### Vite
+
+Install the package with:
+
+```shell
+pnpm add vite-plugin-checker -D
+```
+
+Add plugin to Vite config file and config the checker you need.
+
+```typescript
+// vite.config.ts
+import checker from 'vite-plugin-checker'
+
+import { scripts } from './package.json'
+
+export default {
+  plugins: [
+    checker({
+      vueTsc: true,
+      eslint: {
+        lintCommand: scripts['lint:js']
+      },
+      stylelint: {
+        lintCommand: scripts['lint:css']
+      }
+    })
+  ],
+}
+
+```
+
+### VS Code
+
+Install the following plugins in VS Code
+
+```json
+// .vscode/extensions.json
+{
+  "recommendations": [
+    "stylelint.vscode-stylelint",
+    "dbaeumer.vscode-eslint"
+  ]
+}
+```
+
+Add the following to your `.vscode/settings.json`
+
+```json
+// .vscode/settings.json
+{
+  "stylelint.validate": ["css", "less", "postcss", "scss", "vue", "sass"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  }
 }
 ```
 

@@ -15,6 +15,7 @@
     "eslintconfig",
     "eslint-config",
     "prettier",
+    "stylelint",
     "lint",
     "typescript",
     "vue"
@@ -26,10 +27,12 @@
     "./typescript": "./lib/typescript.js",
     "./vue2": "./lib/vue2.js",
     "./vue3": "./lib/vue3.js",
-    "./prettier.config": "./prettier.config.js"
+    "./prettier.config": "./prettier.config.js",
+    "./stylelint.config": "./stylelint.config.js"
   },
   "files": [
     "lib",
+    "prettier.config.js",
     "prettier.config.js",
     "package.json",
     "README.md"
@@ -48,7 +51,8 @@
   },
   "peerDependencies": {
     "eslint": "^6.0.0 || ^7.0.0 || ^8.0.0",
-    "prettier": ">=2.0.0"
+    "prettier": ">=2.0.0",
+    "stylelint": ">=14.9.1"
   },
   "peerDependenciesMeta": {
     "typescript": {
@@ -65,6 +69,16 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-vue": "^9.14.1",
+    "postcss": "^8.4.24",
+    "postcss-html": "^1.5.0",
+    "postcss-less": "^6.0.0",
+    "postcss-scss": "^4.0.6",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-recess-order": "^4.2.0",
+    "stylelint-config-recommended-vue": "^1.4.0",
+    "stylelint-config-standard": "^33.0.0",
+    "stylelint-config-standard-scss": "^9.0.0",
+    "stylelint-prettier": "^3.0.0",
     "vue-eslint-parser": "^9.3.1"
   },
   "devDependencies": {
