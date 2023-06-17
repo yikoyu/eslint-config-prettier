@@ -1,6 +1,6 @@
 {
   "name": "@yikoyu/eslint-config-prettier",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "license": "MIT",
   "description": "ESLint config with prettier integration",
   "private": false,
