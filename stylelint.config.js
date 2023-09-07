@@ -61,6 +61,7 @@ module.exports = {
           'each',
           'include',
           'mixin',
+          'use',
           'extend'
         ]
       }
